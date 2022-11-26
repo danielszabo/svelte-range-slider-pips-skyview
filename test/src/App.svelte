@@ -3,17 +3,17 @@
   import { onMount } from "svelte";
   import RangeSlider from "../../src/RangeSlider.svelte";
 
-  let reversed = false;
-  let disabled = false;
+  let reversed  = false;
+  let disabled  = false;
   let hoverable = true;
 
-  let values = [21.3, 40, 60, 80];
+  let values  = [21.3, 40, 60, 80];
   let dynamic = [0,50];
-  let pushy = [30,60];
-  let vrange = [20,80];
+  let pushy   = [30,60];
+  let vrange  = [20,80];
 
-  const num = new Intl.NumberFormat("en-US");
-  const numzh = new Intl.NumberFormat("zh-Hans-CN-u-nu-hanidec");
+  const num       = new Intl.NumberFormat("en-US");
+  const numzh     = new Intl.NumberFormat("zh-Hans-CN-u-nu-hanidec");
   const formatter = v => { return num.format(v); };
 
   let day = [3];
