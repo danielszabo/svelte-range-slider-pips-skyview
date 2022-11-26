@@ -777,7 +777,6 @@
     background-color: var(--slider);
   }
 </style>
-
 <div
   {id}
   bind:this={slider}
@@ -829,7 +828,19 @@
     <span
       class="rangeBar"
       style="{orientationStart}: {rangeStart($springPositions)}%; 
-             {orientationEnd}: {rangeEnd($springPositions)}%;" />
+             {orientationEnd}: {rangeEnd($springPositions)}%;">
+      <!-- Disable everything so that clicks in this
+        body don't register with the parent control and 
+        move its sliders around. -->
+        <div class="rangeBarBody"
+          on:keydown|stopPropagation
+          on:mousedown|stopPropagation
+          on:touchstart|stopPropagation
+          on:focus|stopPropagation 
+          on:click|stopPropagation>
+          <slot></slot>
+        </div>
+    </span>
   {/if}
   {#if pips}
     <RangePips
