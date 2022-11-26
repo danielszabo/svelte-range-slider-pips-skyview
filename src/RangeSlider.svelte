@@ -18,6 +18,8 @@
   export let reversed  = false;
   export let hoverable = true;
   export let disabled  = false;
+  export let showtitle = false;
+  export let dragonly  = true;
 
   // range pips / values props
   export let pips    = false;
@@ -442,6 +444,14 @@
   function sliderInteractStart(e) {
     if ( !disabled ) {
       const el = e.target;
+
+      // only respond to drab events from handles
+      if ( dragonly === true ){
+        if ( !el.classList.contains("rangeNub") ){
+          return;
+        }
+      }
+
       const clientPos = normalisedClient(e);
       // set the closest handle as active
       focus = true;
@@ -776,7 +786,16 @@
     background-color: #d7dada;
     background-color: var(--slider);
   }
+  
 </style>
+{#if range && showtitle===true}
+<div class="rangeTitle"
+  style="
+    margin-left: {rangeStart($springPositions)}%; 
+    margin-right: {rangeEnd($springPositions)}%;">
+  <slot name="rangeTitle"></slot>
+</div>
+{/if}
 <div
   {id}
   bind:this={slider}
@@ -825,19 +844,22 @@
     </span>
   {/each}
   {#if range}
+    
     <span
       class="rangeBar"
       style="{orientationStart}: {rangeStart($springPositions)}%; 
              {orientationEnd}: {rangeEnd($springPositions)}%;">
-      <!-- Disable everything so that clicks in this
-        body don't register with the parent control and 
-        move its sliders around. -->
+      <!-- 
+      Disable everything w |stopPropagation 
+      so that clicks in this body don't 
+      register with the parent control and 
+      move its sliders around. -->
         <div class="rangeBarBody"
-          on:keydown|stopPropagation
-          on:mousedown|stopPropagation
-          on:touchstart|stopPropagation
-          on:focus|stopPropagation 
-          on:click|stopPropagation>
+        on:keydown|stopPropagation
+        on:mousedown|stopPropagation
+        on:touchstart|stopPropagation
+        on:focus|stopPropagation 
+        on:click|stopPropagation>
           <slot></slot>
         </div>
     </span>
