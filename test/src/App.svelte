@@ -64,13 +64,19 @@
       bind:values={rangeValues}
       on:change={(e)=>handleDateChange(e)}>
 
-      <!-- Inner-range selector for Percent -->
-      <span class="percentSlider">
-        <RangeSlider 
-          range="min" 
-          bind:values={percValue}
-          on:change={(e)=>handlePercentChange(e)}/>
-      </span>
+      <div style="--range-handle-focus: red; --range-handle: green; --range-slider: pink;">
+        <div>
+          {effort.title}
+        </div>
+
+        <!-- Inner-range selector for Percent -->
+        <div class="percentSlider">
+          <RangeSlider 
+            range="min" 
+            bind:values={percValue}
+            on:change={(e)=>handlePercentChange(e)}/>
+        </div>
+    </div>
 
     </RangeSlider>
     
