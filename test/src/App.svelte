@@ -17,16 +17,14 @@
   let min     = 0;
   let max     = 100;
 
-  let color      = "blue";
-  let lightColor = "lightblue";
+  // Some css
+  let rangeHandleColor         = "transparent";
+  let rangeHandleFocusColor    = "lightblue";
+  let rangeHandleInactiveColor = "black";
 
   function handleDateChange(){
     effort.start = rangeValues[0];
     effort.stop  = rangeValues[1];
-
-    if ( effort.start === 50 ){
-      effort.start = 0;
-    }
   }
   function handlePercentChange(){
     effort.percent = percValue[0];
@@ -43,7 +41,10 @@
 
 <main>
 	
-  <div class="content" style="--range-handle-focus: {color}; --range-handle: {lightColor}">
+  <div class="content foo" style="
+    --range-handle: {rangeHandleColor};
+    --range-handle-focus: {rangeHandleFocusColor}; 
+    --range-handle-inactive:{rangeHandleInactiveColor}">
 
     
     <br>
@@ -60,18 +61,19 @@
       
 
     <!-- Outer Range Selector for start/stop dates -->
-    <RangeSlider range pushy float {disabled} {min} {max}
+    <RangeSlider range pushy float {disabled} {min} {max} showtitle={true} dragonly={true}
       bind:values={rangeValues}
       on:change={(e)=>handleDateChange(e)}>
 
-      <div style="--range-handle-focus: red; --range-handle: green; --range-slider: pink;">
-        <div>
-          {effort.title}
-        </div>
+      <span slot="rangeTitle">
+        {effort.title}<br/>
+        Can you diggit
+      </span>
 
+      <div>
         <!-- Inner-range selector for Percent -->
         <div class="percentSlider">
-          <RangeSlider 
+          <RangeSlider dragonly={true}
             range="min" 
             bind:values={percValue}
             on:change={(e)=>handlePercentChange(e)}/>
