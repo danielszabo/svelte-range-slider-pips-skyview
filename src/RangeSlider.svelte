@@ -7,31 +7,31 @@
   export let slider = undefined;
 
   // range slider props
-  export let range = false;
-  export let pushy = false;
-  export let min = 0;
-  export let max = 100;
-  export let step = 1;
-  export let values = [(max + min) / 2];
-  export let vertical = false;
-  export let float = false;
-  export let reversed = false;
+  export let range     = false;
+  export let pushy     = false;
+  export let min       = 0;
+  export let max       = 100;
+  export let step      = 1;
+  export let values    = [(max + min) / 2];
+  export let vertical  = false;
+  export let float     = false;
+  export let reversed  = false;
   export let hoverable = true;
-  export let disabled = false;
+  export let disabled  = false;
 
   // range pips / values props
-  export let pips = false;
+  export let pips    = false;
   export let pipstep = undefined;
-  export let all = undefined;
-  export let first = undefined;
-  export let last = undefined;
-  export let rest = undefined;
+  export let all     = undefined;
+  export let first   = undefined;
+  export let last    = undefined;
+  export let rest    = undefined;
 
   // formatting props
-  export let id = undefined;
-  export let prefix = "";
-  export let suffix = "";
-  export let formatter = (v,i,p) => v;
+  export let id              = undefined;
+  export let prefix          = "";
+  export let suffix          = "";
+  export let formatter       = (v,i,p) => v;
   export let handleFormatter = formatter;
 
   // stylistic props
@@ -42,12 +42,12 @@
   const dispatch = createEventDispatcher();
 
   // state management
-  let valueLength = 0;
-  let focus = false;
+  let valueLength     = 0;
+  let focus           = false;
   let handleActivated = false;
-  let handlePressed = false;
-  let keyboardActive = false;
-  let activeHandle = values.length - 1;
+  let handlePressed   = false;
+  let keyboardActive  = false;
+  let activeHandle    = values.length - 1;
   let startValue;
   let previousValue;
 
