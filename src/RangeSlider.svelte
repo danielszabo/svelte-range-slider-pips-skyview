@@ -835,6 +835,19 @@
       {disabled}
       tabindex="{ disabled ? -1 : 0 }"
     >
+      <!-- 
+      Disable everything w |stopPropagation 
+      so that clicks in this body don't 
+      register with the parent control and 
+      move its sliders around. -->
+      <span class="rangeHandleBody"
+      on:keydown|stopPropagation
+      on:mousedown|stopPropagation
+      on:touchstart|stopPropagation
+      on:focus|stopPropagation 
+      on:click|stopPropagation>
+        <slot name="rangeHandleBody"></slot>
+      </span>
       <span class="rangeNub" />
       {#if float}
         <span class="rangeFloat">
@@ -844,7 +857,6 @@
     </span>
   {/each}
   {#if range}
-    
     <span
       class="rangeBar"
       style="{orientationStart}: {rangeStart($springPositions)}%; 

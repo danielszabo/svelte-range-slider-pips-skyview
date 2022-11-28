@@ -67,7 +67,10 @@
 
       <span slot="rangeTitle">
         {effort.title}<br/>
-        Can you diggit
+      </span>
+
+      <span slot="rangeHandleBody">
+        Range Handle Body
       </span>
 
       <div>
@@ -78,7 +81,7 @@
             bind:values={percValue}
             on:change={(e)=>handlePercentChange(e)}/>
         </div>
-    </div>
+      </div>
 
     </RangeSlider>
     
